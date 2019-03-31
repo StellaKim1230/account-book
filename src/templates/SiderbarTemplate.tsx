@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar'
 import './SidebarTemplate.scss'
 
 class SiderbarTemplate extends Component {
-  render () {
+  render() {
     const { children } = this.props
     return (
       <div className='SiderbarTemplate'>
