@@ -5,7 +5,7 @@ interface Props {}
 class AccountHome extends Component<Props> {
   render() {
     return (
-      <div className="AccountHome">
+      <div className='AccountHome'>
         가계부 내용
       </div>
     )

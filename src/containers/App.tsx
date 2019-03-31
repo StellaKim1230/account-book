@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import SiderbarTemplate from '../templates/SiderbarTemplate'
 import MainPage from '../pages/MainPage'
+import SiderbarTemplate from '../templates/SiderbarTemplate'
 
 class App extends Component {
   render() {

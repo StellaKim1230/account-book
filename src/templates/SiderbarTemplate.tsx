@@ -9,11 +9,11 @@ interface Props {}
 class SiderbarTemplate extends Component<Props> {
   render() {
     return (
-      <div className="SiderbarTemplate">
-        <div className="SiderbarTemplate__sidebar">
+      <div className='SiderbarTemplate'>
+        <div className='SiderbarTemplate__sidebar'>
           <Sidebar />
         </div>
-        <div className="SiderbarTemplate__main">
+        <div className='SiderbarTemplate__main'>
           {this.props.children}
         </div>
       </div>

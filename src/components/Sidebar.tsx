@@ -5,7 +5,7 @@ interface Props {}
 class Sidebar extends Component<Props> {
   render() {
     return (
-      <div className="Sidebar">
+      <div className='Sidebar'>
         사이드바
       </div>
     )
