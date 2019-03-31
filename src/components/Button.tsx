@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 class Button extends Component<ButtonProps> {
-  render() {
+  render () {
     const { name, title } = this.props
     return (
       <Fragment>

@@ -18,7 +18,8 @@
     "quotemark": [true, "single"],
     "interface-name": [true, "never-prefix"],
     "member-access": [true, "no-public"],
-    "space-before-function-paren": [true, "never"],
-    "curly": [true, "ignore-same-line"]
+    "space-before-function-paren": [true, "always"],
+    "curly": [true, "ignore-same-line"],
+    "eofline": true,
   },
 }

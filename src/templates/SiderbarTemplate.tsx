@@ -4,16 +4,17 @@ import Sidebar from '../components/Sidebar'
 
 import './SidebarTemplate.scss'
 
-class SiderbarTemplate extends Component {
+interface Props {}
+
+class SiderbarTemplate extends Component<Props> {
   render() {
-    const { children } = this.props
     return (
-      <div className='SiderbarTemplate'>
-        <div className='SiderbarTemplate__sidebar'>
+      <div className="SiderbarTemplate">
+        <div className="SiderbarTemplate__sidebar">
           <Sidebar />
         </div>
-        <div className='SiderbarTemplate__main'>
-          {children}
+        <div className="SiderbarTemplate__main">
+          {this.props.children}
         </div>
       </div>
     )
