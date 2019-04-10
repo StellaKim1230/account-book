@@ -2,11 +2,11 @@
 
 declare var DEV: boolean
 
-declare type ReduxAction = {
+declare interface ReduxAction  {
   type: string,
   payload?: any,
 }
 
-declare type SampleReducer = {
+declare interface SampleReducer  {
   reduxWorker: boolean
 }

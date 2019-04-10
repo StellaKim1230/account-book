@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import AccountHome from '../components/AccountHome'
+import AccountMain from '../components/AccountMain'
 
 interface Props {}
 
@@ -8,8 +8,8 @@ class MainPage extends Component<Props> {
   render() {
     return (
       <div className='MainPage'>
-        메인페이지
-        <AccountHome />
+        <header>메인페이지</header>
+        <AccountMain />
       </div>
     )
   }

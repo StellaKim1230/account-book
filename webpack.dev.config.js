@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const baseConfig = require('./webpack.base.config')
 const devServerConfig = require('./configs/devServer.config')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = merge(baseConfig, {
   mode: 'development',
@@ -68,5 +69,8 @@ module.exports = merge(baseConfig, {
     new DefinePlugin({
       DEV: true,
     }),
-  ]
+    new Dotenv({
+      path: './development.env'
+    })
+  ],
 })

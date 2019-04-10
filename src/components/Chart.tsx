@@ -1,8 +1,8 @@
 import React, { Component, createRef } from 'react'
 
-import { Chart, ChartConfiguration } from 'chart.js'
+import { Chart as ChartJs, ChartConfiguration } from 'chart.js'
 
-class AccountChart extends Component<ChartConfiguration> {
+class Chart extends Component<ChartConfiguration> {
   canvas: React.RefObject<HTMLCanvasElement>
 
   constructor(props: ChartConfiguration) {
@@ -20,7 +20,7 @@ class AccountChart extends Component<ChartConfiguration> {
 
     const { current } = this.canvas
 
-    const renderChart = new Chart(current!, {
+    const renderChart = new ChartJs(current!, {
       data,
       options,
       type,
@@ -29,11 +29,11 @@ class AccountChart extends Component<ChartConfiguration> {
 
   render() {
     return (
-      <div className='AccountChart'>
-        <canvas ref={this.canvas}></canvas>
+      <div className='Chart'>
+        <canvas ref={this.canvas} />
       </div>
     )
   }
 }
 
-export default AccountChart
+export default Chart
