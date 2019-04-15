@@ -2,11 +2,40 @@
 
 declare var DEV: boolean
 
-declare interface ReduxAction  {
+interface ReduxAction {
   type: string,
   payload?: any,
 }
 
-declare interface SampleReducer  {
-  reduxWorker: boolean
+interface AmountByCategory {
+  total: string,
+  categoryName: string,
+}
+
+interface AmountPerRange {
+  month: string,
+  groupBy: string,
+  balances: string[],
+}
+
+interface BalanceByAccount {
+  id: number | null,
+  accountName: string,
+  accountNumber: string | null,
+  balance: {
+    balance: number | null,
+    date: string,
+  } | null,
+  cardNumber: string | null,
+}
+
+interface MainStatsReducer {
+  amountByCategory: AmountByCategory[],
+  amountPerRage: AmountPerRange,
+  balanceByAccount: BalanceByAccount,
+  isLoading: boolean,
+}
+
+interface ReduxState {
+  mainStats: MainStatsReducer,
 }

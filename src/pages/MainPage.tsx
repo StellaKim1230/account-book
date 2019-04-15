@@ -1,18 +1,44 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators, Dispatch } from 'redux'
+import { RootAction } from 'AppTypes'
 
-import AccountMain from '../components/AccountMain'
+import { Omit } from 'utility-types'
 
-interface Props {}
+import Main from '../components/Main'
+import { getMainStats as getMainStatsAction } from '../redux/actions/mainStats'
+
+export type MainStats = Omit<MainStatsReducer, 'isLoading'>
+
+interface Props {
+  mainStats: MainStats,
+  getMainStats: () => (dispatch: Dispatch) => void
+}
 
 class MainPage extends Component<Props> {
+  componentDidMount() {
+    this.props.getMainStats()
+  }
+
   render() {
     return (
       <div className='MainPage'>
         <header>메인페이지</header>
-        <AccountMain />
+        <Main />
       </div>
     )
   }
 }
 
-export default MainPage
+const mapStateToProps = ({ mainStats }: ReduxState) => ({
+  mainStats,
+})
+
+const mapDispatchToProps = (dispatch: Dispatch<RootAction>) => bindActionCreators({
+  getMainStats: getMainStatsAction,
+}, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainPage)

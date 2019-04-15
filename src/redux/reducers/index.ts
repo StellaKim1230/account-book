@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import sampleReducer from './sample'
+import MainStatsReducer from './mainStats'
 
 const reducers = combineReducers({
-  sample: sampleReducer,
+  mainStats: MainStatsReducer,
 })
 
 export default reducers

@@ -14,6 +14,6 @@ export const configureStore = (initialState: any) => createStore(
   reducers,
   initialState,
   composeEnhancer(
-    applyMiddleware(...middlewares),
-  ),
+    applyMiddleware(...middlewares)
+  )
 )

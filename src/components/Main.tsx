@@ -32,10 +32,10 @@ const options = {
   },
 }
 
-class AccountMain extends Component<Props> {
+class Main extends Component<Props> {
   render() {
     return (
-      <div className='AccountMain'>
+      <div className='Main'>
         <header>가계부 내용</header>
         <Chart
           type='pie'
@@ -47,4 +47,4 @@ class AccountMain extends Component<Props> {
   }
 }
 
-export default AccountMain
+export default Main
