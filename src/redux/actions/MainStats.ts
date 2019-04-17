@@ -6,22 +6,23 @@ import {
   GET_MAIN_STATS_SUCCESS,
   GET_MAIN_STATS_FAILED
 } from './actionTypes'
-import { MainStats } from '../../pages/MainPage'
 import { getApiHandler } from '../../utils/api'
 
-export const getMainStats = () => (dispatch: Dispatch) => {
+export const getMainStats = () => async(dispatch: Dispatch) => {
   dispatch({
     type: GET_MAIN_STATS,
   })
 
-  getApiHandler('/stats', 'GET')
-    .then((response) => {
-      dispatch(getMainStatsSuccess(response))
-    })
-    .catch(() => dispatch(getMainstatsFailed()))
+  try {
+    const { data, result } = await getApiHandler('/stats', 'GET') as ApiResponse
+    if (result) return dispatch(getMainStatsSuccess(data))
+    dispatch(getMainstatsFailed())
+  } catch (e) {
+    dispatch(getMainstatsFailed())
+  }
 }
 
-export const getMainStatsSuccess = (payload: MainStats): ReduxAction => ({
+export const getMainStatsSuccess = (payload: any): ReduxAction => ({
   type: GET_MAIN_STATS_SUCCESS,
   payload,
 })

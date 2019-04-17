@@ -6,7 +6,7 @@ import {
 
 const initialState: MainStatsReducer = {
   amountByCategory: [],
-  amountPerRage: {
+  amountPerRange: {
     month: '',
     groupBy: '',
     balances: [],

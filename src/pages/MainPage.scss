@@ -1,0 +1,31 @@
+.MainPage {
+  width: 100%;
+  height: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  background-color: $white;
+  border: 1px solid $border-color;
+}
+
+.MainPage__chart {
+  position: relative;
+  width: 50%;
+  border-radius: 2px;
+  box-shadow: .1rem .1rem .5rem .1rem $box-shadow-color;
+}
+
+.MainPage__header {
+  margin-bottom: 2rem;
+}
+
+.MainPage__amountByCategory {
+  padding: 1.5rem 1rem;
+  margin-bottom: 3rem;
+  border: 1px solid $border-color;
+}
+
+.MainPage__amountPerRange {
+  padding: 1.5rem 1rem;
+  border: 1px solid $border-color;
+}

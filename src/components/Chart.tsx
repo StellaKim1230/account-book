@@ -1,8 +1,15 @@
 import React, { Component, createRef } from 'react'
 
 import { Chart as ChartJs, ChartConfiguration } from 'chart.js'
+import cx from 'classnames'
 
-class Chart extends Component<ChartConfiguration> {
+interface ComponentProps {
+  className?: string,
+}
+
+type Props = ComponentProps & ChartConfiguration
+
+class Chart extends Component<Props> {
   canvas: React.RefObject<HTMLCanvasElement>
 
   constructor(props: ChartConfiguration) {
@@ -29,7 +36,7 @@ class Chart extends Component<ChartConfiguration> {
 
   render() {
     return (
-      <div className='Chart'>
+      <div className={cx('Chart', this.props.className)}>
         <canvas ref={this.canvas} />
       </div>
     )

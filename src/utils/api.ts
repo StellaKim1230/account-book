@@ -1,4 +1,4 @@
-export const getApiHandler = async(url: string, method: string = 'GET') => {
+export const getApiHandler = async(url: string, method: string = 'GET'): Promise<ApiResponse | undefined> => {
   const option = {
     method,
   }

@@ -31,11 +31,17 @@ interface BalanceByAccount {
 
 interface MainStatsReducer {
   amountByCategory: AmountByCategory[],
-  amountPerRage: AmountPerRange,
+  amountPerRange: AmountPerRange,
   balanceByAccount: BalanceByAccount,
   isLoading: boolean,
 }
 
 interface ReduxState {
   mainStats: MainStatsReducer,
+}
+
+interface ApiResponse {
+  result: boolean,
+  data?: any,
+  errorCode?: number,
 }
