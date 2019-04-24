@@ -9,8 +9,9 @@
 }
 
 .MainPage__chart {
-  position: relative;
   width: 50%;
+  padding: 1rem;
+  position: relative;
   border-radius: 2px;
   box-shadow: .1rem .1rem .5rem .1rem $box-shadow-color;
 }

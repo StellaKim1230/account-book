@@ -1,18 +1,27 @@
 import React, { Component, createRef } from 'react'
 
-import { Chart as ChartJs, ChartConfiguration } from 'chart.js'
+import { Chart as ChartJs } from 'chart.js'
 import cx from 'classnames'
 
-interface ComponentProps {
-  className?: string,
-}
+import {
+  getChartData,
+  getChartOptions,
+} from './CharatUtils'
 
-type Props = ComponentProps & ChartConfiguration
+interface Props {
+  className?: string,
+  type: string,
+  title: string,
+  chartData: number[],
+  labels: string[],
+  responsive?: boolean,
+  isLegendShowing: boolean,
+}
 
 class Chart extends Component<Props> {
   canvas: React.RefObject<HTMLCanvasElement>
 
-  constructor(props: ChartConfiguration) {
+  constructor(props: Props) {
     super(props)
 
     this.canvas = createRef()
@@ -21,15 +30,26 @@ class Chart extends Component<Props> {
   componentDidMount() {
     const {
       type,
-      data,
-      options,
+      title,
+      chartData,
+      labels,
+      responsive,
+      isLegendShowing,
     } = this.props
 
     const { current } = this.canvas
 
     const renderChart = new ChartJs(current!, {
-      data,
-      options,
+      data: getChartData({
+        type,
+        labels,
+        data: chartData,
+      }),
+      options: getChartOptions({
+        responsive: ((typeof responsive === 'undefined') || responsive === false) ? false : true,
+        text: title,
+        isLegendShowing,
+      }),
       type,
     })
   }
