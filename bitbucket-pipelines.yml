@@ -2,8 +2,8 @@ image: node:10
 
 pipelines:
   custom:
-    name: Build
     - step:
+        name: Build
         caches:
           - node
         script:
