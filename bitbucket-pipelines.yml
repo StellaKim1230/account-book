@@ -1,7 +1,7 @@
 image: node:10
 
 pipelines:
-  custom:
+  default:
     - step:
         name: Build
         caches:
@@ -9,4 +9,3 @@ pipelines:
         script:
           - npm install
           - npm run build
-        trigger: manual
