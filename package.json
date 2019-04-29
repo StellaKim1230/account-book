@@ -5,7 +5,7 @@
   "author": "stellakim1230@gmail.com",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config ./webpack.dev.config.js",
+    "build:dev": "webpack --config ./webpack.dev.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "webpack-dev-server --config webpack.dev.config.js"
   },

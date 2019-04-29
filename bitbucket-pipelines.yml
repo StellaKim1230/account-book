@@ -1,0 +1,29 @@
+image: node:10
+
+pipelines:
+  default:
+    - step:
+        name: Test
+        caches:
+          - node
+        script:
+          - npm install
+  pull-requests:
+      feature-*:
+          - step:
+              name: Feature branch build Test
+              script:
+                - npm run build:dev
+  branches:
+    dev:
+      - step:
+          name: Build
+          script:
+            - npm run build:dev
+            - pipe: atlassian/aws-s3-deploy:0.2.4
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $S3_BUCKET
+                LOCAL_PATH: $LOCAL_PATH
