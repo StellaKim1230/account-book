@@ -8,10 +8,13 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
+
+const isDev = process.env.NODE_ENV === 'dev'
 
 module.exports = merge(baseConfig, {
   mode: 'production',
-  devtool: false,
+  devtool: isDev ? 'inline-source-map' : false,
   output: {
     filename: '[name].[hash].bundle.js',
     chunkFilename: '[name].[chunkhash].js',
@@ -86,6 +89,9 @@ module.exports = merge(baseConfig, {
       filename: '[file].gz[query]',
       algorithm: 'gzip',
     }),
+    new Dotenv({
+      path: './development.env'
+    })
   ],
   optimization: {
     splitChunks: {
