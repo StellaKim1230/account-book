@@ -14,9 +14,9 @@ import { getMainStats as getMainStatsAction } from '../redux/actions/mainStats'
 import './MainPage.scss'
 
 interface Props {
-  isLoading: boolean,
-  amountByCategory: AmountByCategory[],
-  amountPerRange: AmountPerRange,
+  isLoading: boolean
+  amountByCategory: AmountByCategory[]
+  amountPerRange: AmountPerRange
   getMainStats: () => (dispatch: Dispatch) => void
 }
 

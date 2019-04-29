@@ -6,17 +6,17 @@ import { currencyFormatFactory } from '../utils/formatUtils'
 const fomatter = currencyFormatFactory()
 
 interface ChartDataParams {
-  label?: string,
-  type: string,
-  labels: string[],
-  data: number[],
-  borderWidth?: number,
+  label?: string
+  type: string
+  labels: string[]
+  data: number[]
+  borderWidth?: number
 }
 
 interface ChartOptionsParams {
-  text: string,
-  responsive: boolean,
-  isLegendShowing: boolean,
+  text: string
+  responsive: boolean
+  isLegendShowing: boolean
 }
 
 const numberToHex = (n: number) => (

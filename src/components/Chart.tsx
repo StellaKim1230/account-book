@@ -9,13 +9,13 @@ import {
 } from './CharatUtils'
 
 interface Props {
-  className?: string,
-  type: string,
-  title: string,
-  chartData: number[],
-  labels: string[],
-  responsive?: boolean,
-  isLegendShowing: boolean,
+  className?: string
+  type: string
+  title: string
+  chartData: number[]
+  labels: string[]
+  responsive?: boolean
+  isLegendShowing: boolean
 }
 
 class Chart extends Component<Props> {

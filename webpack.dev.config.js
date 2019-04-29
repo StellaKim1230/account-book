@@ -9,10 +9,11 @@ const Dotenv = require('dotenv-webpack')
 
 module.exports = merge(baseConfig, {
   mode: 'development',
+  devtool: 'inline-source-map',
   output: {
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js',
   },
   devServer: devServerConfig,
   module: {

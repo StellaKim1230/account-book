@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import MainStatsReducer from './mainStats'
+import MainStatsReducer from './maiStats'
 
 const reducers = combineReducers({
   mainStats: MainStatsReducer,
