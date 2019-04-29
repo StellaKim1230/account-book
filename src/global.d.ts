@@ -22,17 +22,15 @@ interface BalanceByAccount {
   id: number | null
   accountName: string
   accountNumber: string | null
-  balance: {
-    balance: number | null
-    date: string
-  } | null
+  balance: number | null
+  date: string
   cardNumber: string | null
 }
 
 interface MainStatsReducer {
   amountByCategory: AmountByCategory[]
   amountPerRange: AmountPerRange
-  balanceByAccount: BalanceByAccount
+  balanceByAccount: BalanceByAccount[]
   isLoading: boolean
 }
 

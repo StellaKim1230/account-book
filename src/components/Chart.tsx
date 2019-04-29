@@ -6,7 +6,7 @@ import cx from 'classnames'
 import {
   getChartData,
   getChartOptions,
-} from './CharatUtils'
+} from './ChartUtils'
 
 interface Props {
   className?: string

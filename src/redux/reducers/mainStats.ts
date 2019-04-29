@@ -11,13 +11,7 @@ const initialState: MainStatsReducer = {
     groupBy: '',
     balances: [],
   },
-  balanceByAccount: {
-    id: null,
-    accountName: '',
-    accountNumber: '',
-    balance: null,
-    cardNumber: '',
-  },
+  balanceByAccount: [],
   isLoading: false,
 }
 

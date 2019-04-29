@@ -9,7 +9,7 @@ import {
   getAmountByCategoryLabels,
   getAmountPerRangeLabels,
 } from './MainPageUtils'
-import { getMainStats as getMainStatsAction } from '../redux/actions/maiStats'
+import { getMainStats as getMainStatsAction } from '../redux/actions/mainStats'
 
 import './MainPage.scss'
 
