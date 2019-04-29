@@ -5,7 +5,7 @@ pipelines:
     - step:
         name: Test
         script:
-          - echo 'default step'
+          - yarn test
   pull-requests:
       feature-*:
           - step:
