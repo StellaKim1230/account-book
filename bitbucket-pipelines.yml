@@ -4,21 +4,25 @@ pipelines:
   default:
     - step:
         name: Test
-        caches:
-          - node
         script:
-          - npm install
+          - echo 'default step'
   pull-requests:
       feature-*:
           - step:
               name: Feature branch build Test
+              caches:
+                - node
               script:
+                - npm install
                 - npm run build:dev
   branches:
     dev:
       - step:
           name: Build
+          caches:
+            - node
           script:
+            - npm install
             - npm run build:dev
             - pipe: atlassian/aws-s3-deploy:0.2.4
               variables:
