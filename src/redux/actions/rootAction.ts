@@ -1,3 +1,3 @@
-import * as mainActions from './mainStats'
+import * as mainActions from './maiStats'
 
 export default { mainActions }
