@@ -4,7 +4,10 @@ pipelines:
   default:
     - step:
         name: Test
+        caches:
+          - node
         script:
+          - npm install
           - npm run test
   pull-requests:
       feature-*:
