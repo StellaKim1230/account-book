@@ -14,15 +14,15 @@ pipelines:
                 - node
               script:
                 - npm install
-                - npm run build:dev
+                - npm run test
       fix-*:
           - step:
-              name: Feature branch build Test
+              name: Fix branch build Test
               caches:
                 - node
               script:
                 - npm install
-                - npm run build
+                - npm run test
   branches:
     dev:
       - step:
