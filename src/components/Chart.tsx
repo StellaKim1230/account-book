@@ -16,6 +16,7 @@ interface Props {
   labels: string[]
   responsive?: boolean
   isLegendShowing: boolean
+  maintainAspectRatio?: boolean
 }
 
 class Chart extends Component<Props> {
@@ -47,6 +48,7 @@ class Chart extends Component<Props> {
       }),
       options: getChartOptions({
         responsive: ((typeof responsive === 'undefined') || responsive === false) ? false : true,
+        maintainAspectRatio: false,
         text: title,
         isLegendShowing,
       }),

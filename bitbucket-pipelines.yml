@@ -9,23 +9,6 @@ pipelines:
         script:
           - npm install
           - npm run test
-  pull-requests:
-      feature-*:
-          - step:
-              name: Feature branch build Test
-              caches:
-                - node
-              script:
-                - npm install
-                - npm run test
-      fix-*:
-          - step:
-              name: Fix branch build Test
-              caches:
-                - node
-              script:
-                - npm install
-                - npm run test
   branches:
     dev:
       - step:

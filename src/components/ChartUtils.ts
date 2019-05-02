@@ -17,6 +17,7 @@ interface ChartOptionsParams {
   text: string
   responsive: boolean
   isLegendShowing: boolean
+  maintainAspectRatio: boolean
 }
 
 const numberToHex = (n: number) => (
@@ -72,8 +73,10 @@ export const getChartOptions = ({
   responsive,
   text,
   isLegendShowing,
+  maintainAspectRatio,
 }: ChartOptionsParams) => ({
   responsive,
+  maintainAspectRatio,
   title: {
     text,
     display: true,

@@ -8,25 +8,67 @@
   border: 1px solid $border-color;
 }
 
-.MainPage__chart {
-  width: 50%;
+.MainPage__section::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.MainPage__amountByCategoryChart {
+  width: 60%;
+  height: 30rem;
   padding: 1rem;
   position: relative;
   border-radius: 2px;
-  box-shadow: .1rem .1rem .5rem .1rem $box-shadow-color;
+  float: left;
+  margin-bottom: 1rem;
+  border: .05rem solid $border-color;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.MainPage__balanceByAccount {
+  width: calc(100% - 60% - 1rem);
+  min-height: 30rem;
+  float: right;
+  text-align: right;
+  padding: 1.5rem 1rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-left: 1rem;
+  border: .05rem solid $border-color;
+  
+  p {
+    margin-top: .5rem;
+    font-weight: bold;
+  }
+
+  li {
+    margin-bottom: 2rem;
+  }
+
+  @include mobile {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+}
+
+.MainPage__amountPerRangeChart {
+  width: 60%;
+  min-height: 30rem;
+  padding: 1rem;
+  position: relative;
+  border-radius: 2px;
+  border: .05rem solid $border-color;
+
+  @include mobile {
+    width: 100%;
+  }
 }
 
 .MainPage__header {
   margin-bottom: 2rem;
-}
-
-.MainPage__amountByCategory {
-  padding: 1.5rem 1rem;
-  margin-bottom: 3rem;
-  border: 1px solid $border-color;
-}
-
-.MainPage__amountPerRange {
-  padding: 1.5rem 1rem;
-  border: 1px solid $border-color;
 }

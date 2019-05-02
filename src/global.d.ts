@@ -19,7 +19,7 @@ interface AmountPerRange {
 }
 
 interface BalanceByAccount {
-  id: number | null
+  id: number
   accountName: string
   accountNumber: string | null
   balance: number | null
