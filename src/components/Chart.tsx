@@ -28,7 +28,7 @@ class Chart extends Component<Props> {
     this.canvas = createRef()
   }
 
-  componentDidMount() {
+  chartRender = () => {
     const {
       type,
       title,
@@ -54,6 +54,16 @@ class Chart extends Component<Props> {
       }),
       type,
     })
+  }
+
+  componentDidMount() {
+    this.chartRender()
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.chartData !== this.props.chartData) {
+      this.chartRender()
+    }
   }
 
   render() {

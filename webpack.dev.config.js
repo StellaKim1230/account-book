@@ -61,7 +61,7 @@ module.exports = merge(baseConfig, {
   plugins: [
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: 'dev',
+      title: 'Account-Book-Dev',
       template: path.resolve(__dirname, 'static/index.ejs'),
       inject: true,
     }),

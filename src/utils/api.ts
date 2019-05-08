@@ -10,6 +10,6 @@ export const getApiHandler = async(url: string, method: string = 'GET'): Promise
 
   } catch (err) {
     // add error handler
-    console.log(err)
+    console.error(err)
   }
 }

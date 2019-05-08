@@ -70,8 +70,8 @@ export const getChartData = ({
 }
 
 export const getChartOptions = ({
-  responsive,
   text,
+  responsive,
   isLegendShowing,
   maintainAspectRatio,
 }: ChartOptionsParams) => ({

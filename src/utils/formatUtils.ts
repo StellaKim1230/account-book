@@ -7,7 +7,7 @@ export const currencyFormatFactory = (formatString: string = '0,0') => (currency
   return numeral(currency).format(formatString)
 }
 
-export const dateFormatFactory = (formatDate: string = 'YYYY-MM-DD') => (date: string) => {
+export const dateFormatFactory = (formatDate: string = 'YYYY-MM-DD') => (date: string | number | Date) => {
   if (!date) return ''
 
   return format(date, formatDate)

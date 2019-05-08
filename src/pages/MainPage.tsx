@@ -1,19 +1,16 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import { RootAction } from 'AppTypes'
-import { map } from 'lodash'
+import { sum, map, ary } from 'lodash'
 
 import {
   currencyFormatFactory,
   dateFormatFactory
 } from '../utils/formatUtils'
-import {
-  getAmountByCategoryLabels,
-  getAmountPerRangeLabels,
-} from './MainPageUtils'
 
-import Chart from '../components/Chart'
+import AmountByCategoryChart from '../components/AmountByCategoryChart'
+import AmountPerRangeChart from '../components/AmountPerRangeChart'
 
 import './MainPage.scss'
 
@@ -23,14 +20,16 @@ const currencyFomatter = currencyFormatFactory()
 const dateFormatter = dateFormatFactory()
 
 interface Props {
-  isLoading: boolean,
-  amountByCategory: AmountByCategory[],
-  amountPerRange: AmountPerRange,
-  balanceByAccount: BalanceByAccount[],
+  isLoading: boolean
+  amountByCategory: AmountByCategory[]
+  amountPerRange: AmountPerRange
+  balanceByAccount: BalanceByAccount[]
   getMainStats: () => (dispatch: Dispatch) => void
 }
 
-class MainPage extends Component<Props> {
+interface State {}
+
+class MainPage extends Component<Props, State> {
   componentDidMount() {
     this.props.getMainStats()
   }
@@ -49,37 +48,32 @@ class MainPage extends Component<Props> {
 
     return !isLoading && isValidData && (
       <div className='MainPage'>
-        <div className='MainPage__section'>
-          <Chart
-            className='MainPage__amountByCategoryChart'
-            type='doughnut'
-            title='분류별 지출 현황'
-            chartData={map(amountByCategory, ({ total }) => (
-              parseInt(total, 10)
-            ))}
-            labels={map(amountByCategory, ({ categoryName }) => (
-              getAmountByCategoryLabels(categoryName)
-            ))}
-            responsive
-            isLegendShowing
-          />
-          <ul className='MainPage__balanceByAccount'>
-            {balanceByAccount.map(({ id, accountName, accountNumber, date, cardNumber, balance}) => (
-              <li key={id}>
-                <div>{accountName}: {accountNumber || cardNumber}</div>
-                <div>{dateFormatter(date)} {date ? `기준` : ''} 잔액 : {currencyFomatter(balance || 0)}원</div>
-              </li>
-            ))}
-          </ul>
+        <div className='MainPage__currentMonth'>
+          <div className='MainPage__currentMonthTitle'>
+            <span className='MainPage__currentDate'>
+              {dateFormatter(Date.now())}
+            </span> 까지 사용한 금액
+          </div>
+          <div className='MainPage__totalExpenseByCurrentMonth'>
+            {currencyFomatter(sum(map(amountPerRange.balances, ary(parseInt, 1))))}원
+          </div>
         </div>
-        <Chart
-          className='MainPage__amountPerRangeChart'
-          type='line'
-          title='한달 지출 현황'
-          chartData={balances.map((balance) => parseInt(balance, 10))}
-          labels={getAmountPerRangeLabels(balances, 'day')}
-          responsive
-          isLegendShowing={false}
+        <div className='MainPage__balanceByAccount'>
+          {balanceByAccount.map(({ id, accountName, accountNumber, date, cardNumber, balance}) => (
+            <div key={id} className='MainPage__balanceByAccountTable'>
+              <div className='MainPage__balanceByAccountHead'>
+                {accountName}: {accountNumber || cardNumber}
+              </div>
+              {/* <div className='MainPage__balanceByAccountDate'>{dateFormatter(date)} {date ? `기준` : ''}</div> */}
+              <div className='MainPage__balanceByAccountValue'> 잔액 : {currencyFomatter(balance || 0)}원</div>
+            </div>
+          ))}
+        </div>
+        <AmountByCategoryChart
+          amountByCategory={amountByCategory}
+        />
+        <AmountPerRangeChart
+          balances={balances}
         />
       </div>
     )

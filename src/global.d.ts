@@ -42,4 +42,5 @@ interface ApiResponse {
   result: boolean
   data?: any
   errorCode?: number
+  balances?: any
 }
