@@ -20,6 +20,13 @@ interface ChartOptionsParams {
   maintainAspectRatio: boolean
 }
 
+interface AddChartDataParmas {
+  chart: Chart
+  labels: string[]
+  chartData: number[]
+  type: string
+}
+
 const numberToHex = (n: number) => (
   (n).toString(16).toUpperCase()
 )
@@ -92,3 +99,25 @@ export const getChartOptions = ({
     },
   },
 })
+
+export const removeChartData = (chart: Chart) => {
+  chart.data!.datasets! = []
+  chart.data!.labels! = []
+
+  chart.update()
+}
+
+export const addChartData = ({
+  chart,
+  labels,
+  chartData,
+  type,
+}: AddChartDataParmas) => {
+  chart.data = getChartData({
+    type,
+    labels,
+    data: chartData,
+  })
+
+  chart.update()
+}

@@ -1,11 +1,13 @@
 import React, { Component, createRef } from 'react'
 
-import { Chart as ChartJs } from 'chart.js'
+import { Chart } from 'chart.js'
 import cx from 'classnames'
 
 import {
   getChartData,
   getChartOptions,
+  removeChartData,
+  addChartData
 } from './ChartUtils'
 
 interface Props {
@@ -19,8 +21,9 @@ interface Props {
   maintainAspectRatio?: boolean
 }
 
-class Chart extends Component<Props> {
+class ReactChart extends Component<Props> {
   canvas: React.RefObject<HTMLCanvasElement>
+  chart: Chart
 
   constructor(props: Props) {
     super(props)
@@ -28,7 +31,18 @@ class Chart extends Component<Props> {
     this.canvas = createRef()
   }
 
-  chartRender = () => {
+  componentDidMount() {
+    this.renderChart()
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.chartData !== this.props.chartData) {
+      const { labels, chartData } = this.props
+      this.updateChart(labels, chartData)
+    }
+  }
+
+  renderChart = () => {
     const {
       type,
       title,
@@ -40,7 +54,7 @@ class Chart extends Component<Props> {
 
     const { current } = this.canvas
 
-    const renderChart = new ChartJs(current!, {
+    this.chart = new Chart(current!, {
       data: getChartData({
         type,
         labels,
@@ -56,14 +70,14 @@ class Chart extends Component<Props> {
     })
   }
 
-  componentDidMount() {
-    this.chartRender()
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.chartData !== this.props.chartData) {
-      this.chartRender()
-    }
+  updateChart = (labels: string[], chartData: number[]) => {
+    removeChartData(this.chart)
+    addChartData({
+      chart: this.chart,
+      labels,
+      chartData,
+      type: this.props.type,
+    })
   }
 
   render() {
@@ -75,4 +89,4 @@ class Chart extends Component<Props> {
   }
 }
 
-export default Chart
+export default ReactChart
