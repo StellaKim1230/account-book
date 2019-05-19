@@ -27,9 +27,7 @@ interface Props {
   getMainStats: () => (dispatch: Dispatch) => void
 }
 
-interface State {}
-
-class MainPage extends Component<Props, State> {
+class MainPage extends Component<Props> {
   componentDidMount() {
     this.props.getMainStats()
   }
@@ -64,7 +62,6 @@ class MainPage extends Component<Props, State> {
               <div className='MainPage__balanceByAccountHead'>
                 {accountName}: {accountNumber || cardNumber}
               </div>
-              {/* <div className='MainPage__balanceByAccountDate'>{dateFormatter(date)} {date ? `기준` : ''}</div> */}
               <div className='MainPage__balanceByAccountValue'> 잔액 : {currencyFomatter(balance || 0)}원</div>
             </div>
           ))}

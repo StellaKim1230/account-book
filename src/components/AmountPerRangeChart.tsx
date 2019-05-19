@@ -5,7 +5,7 @@ import Button from './Button'
 import Chart from './Chart'
 
 import { getAmountPerRangeLabels } from '../pages/MainPageUtils'
-import { getAmountApi } from './AmountChartUtils'
+import { apiHandler } from '../utils/api'
 
 interface Props {
   balances: string[]
@@ -30,9 +30,9 @@ class AmountPerRangeChart extends Component<Props, State> {
     }
   }
 
-  getAmount = async(url: string, urlParams?: string) => {
+  getAmount = async (url: string) => {
     try {
-      const { data } = await getAmountApi({ url, urlParams })
+      const { data } = await apiHandler(url) as ApiResponse
       this.setState({
         balances: data.balances,
       })
@@ -43,7 +43,7 @@ class AmountPerRangeChart extends Component<Props, State> {
   }
 
   buttonClickCallback = () => {
-    this.state.isShowingDaySelector ? this.getAmount('/amount/2') : this.getAmount('/amount/2', 'filter=week')
+    this.state.isShowingDaySelector ? this.getAmount('/amount/2') : this.getAmount('/amount/2?filter=week')
   }
 
   handleButtonClick = ({ target }: React.MouseEvent<HTMLButtonElement>) => {
@@ -76,13 +76,11 @@ class AmountPerRangeChart extends Component<Props, State> {
           <Button
             state={dayButtonState}
             title='DAY'
-            name='day'
             onClick={this.handleButtonClick}
           />
           <Button
             state={weekButtonState}
             title='WEEK'
-            name='week'
             onClick={this.handleButtonClick}
           />
         </div>

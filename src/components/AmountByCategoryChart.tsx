@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { map } from 'lodash'
-import { getYear, getMonth } from 'date-fns'
 import { take } from 'lodash'
 
 import Button from './Button'
@@ -8,7 +7,7 @@ import Select from './Select'
 import Chart from './Chart'
 
 import { getAmountByCategoryLabels } from '../pages/MainPageUtils'
-import { getAmountApi } from './AmountChartUtils'
+import { apiHandler } from '../utils/api'
 
 import { MONTH, START_YEAR, CURRENT_MONTH, CURRENT_YEAR } from '../constants/date'
 
@@ -54,9 +53,9 @@ class AmountByCategoryChart extends Component<Props, State> {
     }
   }
 
-  getAmount = async(url: string, urlParams: string) => {
+  getAmount = async (url: string) => {
     try {
-      const { data } = await getAmountApi({ url, urlParams })
+      const { data } = await apiHandler(url) as ApiResponse
       this.setState({
         amountByCategory: data,
       })
@@ -72,7 +71,7 @@ class AmountByCategoryChart extends Component<Props, State> {
       [name]: value,
     }, () => {
       const { month, year } = this.state
-      this.getAmount('/amount/1', `year=${year}&month=${month}`)
+      this.getAmount(`/amount/1?year=${year}&month=${month}`)
     })
   }
 
@@ -82,8 +81,7 @@ class AmountByCategoryChart extends Component<Props, State> {
     this.setState({
       isShowingMonthSelector: !this.state.isShowingMonthSelector,
     }, () => {
-      const urlParmas = `year=${year}&month=${month}`
-      this.getAmount('/amount/1', urlParmas)
+      this.getAmount(`/amount/1?year=${year}&month=${month}`)
     })
   }
 
@@ -116,7 +114,7 @@ class AmountByCategoryChart extends Component<Props, State> {
             onChange={this.handleChange}
           />}
           <Button
-            name={isShowingMonthSelector ? 'year' : 'year & month'}
+            // name={isShowingMonthSelector ? 'year' : 'year & month'}
             title={isShowingMonthSelector ? 'year' : 'year & month'}
             onClick={this.toggleMonthSelector}
           />

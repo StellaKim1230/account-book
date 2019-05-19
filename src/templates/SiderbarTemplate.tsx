@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Sidebar from '../components/Sidebar'
+import NavigationBar from '../components/NavigationBar'
 
 import './SidebarTemplate.scss'
 
@@ -14,6 +15,7 @@ class SiderbarTemplate extends Component<Props> {
           <Sidebar />
         </div>
         <div className='SiderbarTemplate__main'>
+          <NavigationBar />
           {this.props.children}
         </div>
       </div>
