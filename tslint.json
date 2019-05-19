@@ -29,12 +29,13 @@
     "quotemark": [true, "single"],
     "interface-name": [true, "never-prefix"],
     "member-access": [true, "no-public"],
-    "space-before-function-paren": [true, "never"],
+    "space-before-function-paren": [true, {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
     "curly": [true, "ignore-same-line"],
     "eofline": true,
     "no-empty-interface": false,
     "arrow-parens": true,
     "object-literal-sort-keys": false,
-    "ordered-imports": false
+    "ordered-imports": false,
+    "prefer-template": true
   }
 }
