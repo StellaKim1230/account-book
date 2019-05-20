@@ -18,7 +18,3 @@ export const getAmountByCategoryLabels = (category: string) => {
       return category
   }
 }
-
-export const getAmountPerRangeLabels = (balances: string[], groupBy: string) => (
-  groupBy === 'day' ? balances.map((b, i) => `${i + 1}일`) : balances.map((b, i) => `${i + 1}주`)
-)
