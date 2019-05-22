@@ -9,6 +9,8 @@ import Chart from './Chart'
 import { getAmountByCategoryLabels } from '../pages/MainPageUtils'
 import { apiHandler } from '../utils/api'
 
+import './AmountByCategoryChart.scss'
+
 import { MONTH, START_YEAR, CURRENT_MONTH, CURRENT_YEAR } from '../constants/date'
 
 interface Props {
@@ -94,11 +96,11 @@ class AmountByCategoryChart extends Component<Props, State> {
     } = this.state
 
     return (
-      <div className='MainPage__amountByCategoryChartWrapper'>
-        <div className='MainPage__amountByCategoryChartDate'>
+      <div className='AmountByCategoryChart'>
+        <div className='AmountByCategoryChart__date'>
           {year}년 {month}월
         </div>
-        <div className='MainPage__amountByCategoryChartFilter'>
+        <div className='AmountByCategoryChart__filter'>
           <Select
             className='Select__year'
             name='year'
@@ -114,13 +116,12 @@ class AmountByCategoryChart extends Component<Props, State> {
             onChange={this.handleChange}
           />}
           <Button
-            // name={isShowingMonthSelector ? 'year' : 'year & month'}
             title={isShowingMonthSelector ? 'year' : 'year & month'}
             onClick={this.toggleMonthSelector}
           />
         </div>
         <Chart
-          className='MainPage__amountByCategoryChart'
+          className='AmountByCategoryChart__chart'
           type='doughnut'
           title='분류별 지출 현황'
           chartData={map(amountByCategory, ({ total }) => (

@@ -4,8 +4,9 @@ import { getYear, getMonth } from 'date-fns'
 import Button from './Button'
 import Chart from './Chart'
 
-import { getAmountPerRangeLabels } from '../pages/MainPageUtils'
 import { apiHandler } from '../utils/api'
+
+import './AmountPerRangeChart.scss'
 
 interface Props {
   balances: string[]
@@ -17,6 +18,10 @@ interface State {
   dayButtonState: string
   weekButtonState: string
 }
+
+const getAmountPerRangeLabels = (balances: string[], groupBy: string) => (
+  groupBy === 'day' ? balances.map((b, i) => `${i + 1}일`) : balances.map((b, i) => `${i + 1}주`)
+)
 
 class AmountPerRangeChart extends Component<Props, State> {
   constructor(props: Props) {
@@ -68,24 +73,26 @@ class AmountPerRangeChart extends Component<Props, State> {
     const currentMonth = (getMonth(Date.now()) + 1).toString()
 
     return (
-      <div className='MainPage__amountPerRangeWrapper'>
-        <div className='MainPage__amountPerRangeChartDate'>
+      <div className='AmountPerRangeChart'>
+        <div className='AmountPerRangeChart__date'>
           {currentYear}년 {currentMonth}월
         </div>
-        <div className='MainPage__amountPerRangeFilter'>
+        <div className='AmountPerRangeChart__filter'>
           <Button
             state={dayButtonState}
             title='DAY'
+            name='day'
             onClick={this.handleButtonClick}
           />
           <Button
             state={weekButtonState}
             title='WEEK'
+            name='week'
             onClick={this.handleButtonClick}
           />
         </div>
         <Chart
-          className='MainPage__amountPerRangeChart'
+          className='AmountPerRangeChart__chart'
           type='line'
           title='한달 지출 현황'
           chartData={balances.map((balance) => parseInt(balance, 10))}
