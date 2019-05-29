@@ -1,0 +1,65 @@
+.SigninPage {
+  padding: 4rem 2rem;
+  min-height: calc(100vh - 8rem );
+  background-color: $white;
+
+  @include wide-descktop {
+    min-height: calc(100vh - 4rem );
+  }
+}
+
+.SigninPage__form {
+  border: .5px solid $border-color;
+  border-radius: .3rem;
+  padding: 2rem;
+
+  @include wide-descktop {
+    max-width: 45rem;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.SigninPage__title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+
+  @include wide-descktop {
+    max-width: 45rem;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+}
+
+.SigninPage__input {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  @include mobile {
+    border: .5px solid $border-color;
+  }
+
+  &::placeholder {
+    padding-left: 1rem;
+  }
+}
+
+.SigninPage__checkbox {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.SigninPage__button {
+  display: inline-block;
+  width: 100%;
+}
+
+.SigninPage__apiErrorMessage {
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $red;
+}
