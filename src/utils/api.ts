@@ -1,5 +1,5 @@
 export const apiHandler = async (url: string, method: string = 'GET', body?: any): Promise<ApiResponse | undefined> => {
-  const token = sessionStorage.getItem('accessToken')
+  const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken')
   const bearerToken = `Bearer ${token}`
 
   const contentType = { 'Content-Type': 'application/json; charset=utf-8' }

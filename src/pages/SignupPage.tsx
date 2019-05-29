@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-import Input from '../components/Input'
 import Checkbox from '../components/Checkbox'
 import Button from '../components/Button'
+import Input from '../components/Input'
 import InputWithError from '../components/InputWithError'
 
 import ErrorMessage from '../constants/errorMessage'
@@ -25,7 +25,7 @@ interface State {
 }
 
 class SignupPage extends Component<RouteComponentProps, State> {
-  constructor (props: RouteComponentProps) {
+  constructor(props: RouteComponentProps) {
     super(props)
 
     this.state = {
@@ -121,7 +121,7 @@ class SignupPage extends Component<RouteComponentProps, State> {
       isValidEmail,
     } = this.state
 
-    if (emailTouched && !isValidEmail ) return ErrorMessage.INVALID_EMAIL_FORMAT
+    if (emailTouched && !isValidEmail) return ErrorMessage.INVALID_EMAIL_FORMAT
 
     return ''
   }
@@ -176,14 +176,14 @@ class SignupPage extends Component<RouteComponentProps, State> {
               checked={this.state.isAgreementSelector}
               onChange={handleCheck}
               label='동의합니다.'
-              />
+            />
           </div>
           <Button
             className='SignupPage__button'
             disabled={isDisabledButton()}
             title='회원 가입'
             onClick={handleClick}
-            />
+          />
         </form>
       </div>
     )

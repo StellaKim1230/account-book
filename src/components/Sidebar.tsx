@@ -1,15 +1,30 @@
-import React, { Component } from 'react'
+import React, { FC } from 'react'
+import { Link } from 'react-router-dom'
+
+import './Sidebar.scss'
+
+const links = [{
+  to: '/', label: '가계부',
+}, {
+  to: '/signin', label: '로그인',
+}, {
+  to: '/signup', label: '회원가입',
+}]
 
 interface Props {}
 
-class Sidebar extends Component<Props> {
-  render() {
-    return (
-      <div className='Sidebar'>
-        사이드바
-      </div>
-    )
-  }
-}
+const Sidebar: FC<Props> = () => (
+  <div className='Sidebar'>
+    {links.map(({ to, label }) => (
+      <Link
+        key={to}
+        className='Sidebar__title'
+        to={to}
+      >
+        {label}
+      </Link>
+    ))}
+  </div>
+)
 
 export default Sidebar
