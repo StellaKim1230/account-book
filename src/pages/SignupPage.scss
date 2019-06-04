@@ -56,3 +56,10 @@
   display: inline-block;
   width: 100%;
 }
+
+.SignupPage__apiErrorMessage {
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $red;
+}

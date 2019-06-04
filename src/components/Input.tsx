@@ -12,6 +12,7 @@ interface Props {
   placeholder?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  inputRef?: React.RefObject<HTMLInputElement>
 }
 
 const Input: FC<Props> = ({
@@ -22,8 +23,10 @@ const Input: FC<Props> = ({
   placeholder,
   onChange,
   onBlur,
+  inputRef,
 }) => (
   <input
+    ref={inputRef}
     className={cx('Input', className)}
     id={id}
     name={name}

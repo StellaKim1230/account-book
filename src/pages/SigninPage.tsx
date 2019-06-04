@@ -45,7 +45,7 @@ const SigninPage: FC<RouteComponentProps> = ({ history }) => {
 
     } catch (err) {
       // add error handler
-      console.log(err)
+      console.error(err)
     }
   }
 
