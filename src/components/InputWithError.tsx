@@ -15,6 +15,7 @@ interface Props {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   errorMessage?: string
+  inputRef?: React.RefObject<HTMLInputElement>
 }
 
 const InputWithError: FC<Props> = ({
@@ -25,9 +26,11 @@ const InputWithError: FC<Props> = ({
   onChange,
   onBlur,
   errorMessage,
+  inputRef,
 }) => (
   <Fragment>
     <Input
+      inputRef={inputRef}
       className={cx('InputWithError', className)}
       name={name}
       type={type}
