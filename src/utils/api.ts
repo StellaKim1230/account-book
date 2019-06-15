@@ -1,4 +1,6 @@
-export const apiHandler = async (url: string, method: string = 'GET', body?: any): Promise<ApiResponse | undefined> => {
+import { ApiResponse } from '../types'
+
+export const apiHandler = async <T>(url: string, method: string = 'GET', body?: any): Promise<ApiResponse<T>> => {
   const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken')
   const bearerToken = `Bearer ${token}`
 
@@ -14,11 +16,11 @@ export const apiHandler = async (url: string, method: string = 'GET', body?: any
 
   try {
     const res = await fetch(`${process.env.DEV_API}${url}`, config)
-    const resultJson = await res.json()
-    return resultJson
+    return res.json()
 
   } catch (err) {
     // add error handler
     console.error(err)
+    return err
   }
 }

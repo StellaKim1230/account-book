@@ -4,17 +4,24 @@ import { bindActionCreators, Dispatch } from 'redux'
 import { RootAction } from 'AppTypes'
 import { sum, map, ary } from 'lodash'
 
+import AmountByCategoryChart from '../components/AmountByCategoryChart'
+import AmountPerRangeChart from '../components/AmountPerRangeChart'
+
 import {
   currencyFormatFactory,
   dateFormatFactory
 } from '../utils/formatUtils'
 
-import AmountByCategoryChart from '../components/AmountByCategoryChart'
-import AmountPerRangeChart from '../components/AmountPerRangeChart'
-
-import './MainPage.scss'
+import { ReduxState } from '../types'
+import {
+  AmountByCategory,
+  AmountPerRange,
+  BalanceByAccount,
+} from '../types/model'
 
 import { getMainStats as getMainStatsAction } from '../redux/actions/mainStats'
+
+import './MainPage.scss'
 
 const currencyFomatter = currencyFormatFactory()
 const dateFormatter = dateFormatFactory()
@@ -57,7 +64,7 @@ class MainPage extends Component<Props> {
           </div>
         </div>
         <div className='MainPage__balanceByAccount'>
-          {balanceByAccount.map(({ id, accountName, accountNumber, date, cardNumber, balance}) => (
+          {balanceByAccount.map(({ id, accountName, accountNumber, cardNumber, balance}) => (
             <div key={id} className='MainPage__balanceByAccountTable'>
               <div className='MainPage__balanceByAccountHead'>
                 {accountName}: {accountNumber || cardNumber}

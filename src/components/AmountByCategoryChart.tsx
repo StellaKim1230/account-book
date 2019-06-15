@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-import { map } from 'lodash'
-import { take } from 'lodash'
+import { map, take } from 'lodash'
 
+import { getAmountByCategoryLabels } from '../pages/MainPageUtils'
 import Button from './Button'
 import Select from './Select'
 import Chart from './Chart'
 
-import { getAmountByCategoryLabels } from '../pages/MainPageUtils'
 import { apiHandler } from '../utils/api'
+import { AmountByCategory } from '../types/model'
+import { MONTH, START_YEAR, CURRENT_MONTH, CURRENT_YEAR } from '../constants/date'
 
 import './AmountByCategoryChart.scss'
-
-import { MONTH, START_YEAR, CURRENT_MONTH, CURRENT_YEAR } from '../constants/date'
 
 interface Props {
   className?: string
@@ -57,10 +56,13 @@ class AmountByCategoryChart extends Component<Props, State> {
 
   getAmount = async (url: string) => {
     try {
-      const { data } = await apiHandler(url) as ApiResponse
-      this.setState({
-        amountByCategory: data,
-      })
+      const { data } = await apiHandler<AmountByCategory[]>(url)
+
+      if (data) {
+        this.setState({
+          amountByCategory: data,
+        })
+      }
     } catch (err) {
       console.error(err)
     }

@@ -7,6 +7,7 @@ import InputWithError from '../components/InputWithError'
 
 import { emailCheck, passwordCheck } from './SignupPageUtils'
 import { apiHandler } from '../utils/api'
+import { SignupResult } from '../types/model'
 import getErrorMessage from '../utils/errorMessage'
 import useValidator from '../hooks/useValidator'
 
@@ -25,17 +26,22 @@ const SignupPage: FC<RouteComponentProps> = ({ history }) => {
     e.preventDefault()
 
     try {
-      const {
-        data,
-        result,
-        errorCode,
-      } = await apiHandler('/signup', 'POST', JSON.stringify({
-        email: emailInfo.value,
-        password: passwordInfo.value,
-      })) as ApiResponse
+      const { result, errorCode, data } = await apiHandler<SignupResult>(
+        '/signup',
+        'POST',
+        JSON.stringify({
+          email: emailInfo.value,
+          password: passwordInfo.value,
+        })
+      )
 
-      if (result === false) {
+      if (!result) {
         setErrorMessage(getErrorMessage(errorCode))
+        return
+      }
+
+      if (!data) {
+        setErrorMessage('Response invalid')
         return
       }
 
