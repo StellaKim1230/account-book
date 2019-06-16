@@ -5,6 +5,7 @@ import Button from './Button'
 import Chart from './Chart'
 
 import { apiHandler } from '../utils/api'
+import { AmountPerRange } from '../types/model'
 
 import './AmountPerRangeChart.scss'
 
@@ -37,10 +38,13 @@ class AmountPerRangeChart extends Component<Props, State> {
 
   getAmount = async (url: string) => {
     try {
-      const { data } = await apiHandler(url) as ApiResponse
-      this.setState({
-        balances: data.balances,
-      })
+      const { data } = await apiHandler<AmountPerRange>(url)
+
+      if (data) {
+        this.setState({
+          balances: data.balances,
+        })
+      }
     } catch (err) {
       // add error handler
       console.error(err)

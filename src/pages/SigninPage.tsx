@@ -7,6 +7,7 @@ import Input from '../components/Input'
 
 import getErrorMessage from '../utils/errorMessage'
 import { apiHandler } from '../utils/api'
+import { SigninResult } from '../types/model'
 
 import './SigninPage.scss'
 
@@ -24,14 +25,22 @@ const SigninPage: FC<RouteComponentProps> = ({ history }) => {
     e.preventDefault()
 
     try {
-      const {
-        data,
-        result,
-        errorCode,
-      } = await apiHandler('/signin', 'POST', JSON.stringify({ email, password })) as ApiResponse
+      const { result, errorCode, data } = await apiHandler<SigninResult>(
+        '/signin',
+        'POST',
+        JSON.stringify({
+          email,
+          password,
+        })
+      )
 
-      if (result === false) {
+      if (!result) {
         setErrorMessage(getErrorMessage(errorCode))
+        return
+      }
+
+      if (!data) {
+        setErrorMessage('Response invalid')
         return
       }
 
@@ -42,9 +51,8 @@ const SigninPage: FC<RouteComponentProps> = ({ history }) => {
       storage.setItem('refreshToken', refreshToken)
 
       history.push('/')
-
     } catch (err) {
-      // add error handler
+      // error handler
       console.error(err)
     }
   }

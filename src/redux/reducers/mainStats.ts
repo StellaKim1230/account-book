@@ -4,6 +4,9 @@ import {
   GET_MAIN_STATS_FAILED
 } from '../actions/actionTypes'
 
+import { MainStatsReducer } from '../../types/model'
+import { ReduxAction } from '../../types'
+
 const initialState: MainStatsReducer = {
   amountByCategory: [],
   amountPerRange: {

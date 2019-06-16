@@ -4,6 +4,8 @@ import thunk from 'redux-thunk'
 
 import reducers from './reducers'
 
+const DEV = process.env.NODE_ENV === 'development'
+
 const composeEnhancer: <T>(a: T) => T = DEV ? composeWithDevTools : compose
 
 const middlewares: Middleware[] = [
