@@ -6,7 +6,23 @@ import HistoryRow from '../components/HistoryRow'
 import { History } from '../types/model'
 import { apiHandler } from '../utils/api'
 
-const headers = ['사용날짜', '종류', '카테고리', '계좌명', '제목', '금액', '설명']
+import './HistoryPage.scss'
+
+const headers = [{
+  headerClassName: 'HistoryPage__createdAtHeader', header: '사용날짜',
+}, {
+  headerClassName: 'HistoryPage__typeHeader', header: '종류',
+}, {
+  headerClassName: 'HistoryPage__categoryHeader', header: '카테고리',
+}, {
+  headerClassName: 'HistoryPage__accountHeader', header: '계좌명',
+}, {
+  headerClassName: 'HistoryPage__titleHeader', header: '제목',
+}, {
+  headerClassName: 'HistoryPage__amountHeader', header: '금액',
+}, {
+  headerClassName: 'HistoryPage__descriptionHeader', header: '설명',
+}]
 
 interface Props {}
 
@@ -30,17 +46,32 @@ const HistoryPage: FC<Props> = () => {
 
   return (
     <div className='HistoryPage'>
-      {history && (<Table
-        headers={headers}
-        rows={history.histories.map(({ id, title, amount, createdAt}) => (
-          <HistoryRow
-            key={id}
-            title={title}
-            amount={amount}
-            createdAt={createdAt}
-          />
-        ))}
-      />)}
+      {history && (
+        <Table
+          className='HistoryPage__table'
+          headers={headers}
+          rows={history.histories.map(
+            ({
+              id,
+              title,
+              amount,
+              account,
+              category,
+              description,
+              createdAt,
+            }) => (
+              <HistoryRow
+                key={id}
+                title={title}
+                amount={amount}
+                account={account}
+                category={category}
+                createdAt={createdAt}
+                description={description}
+              />
+          ))}
+        />
+      )}
     </div>
   )
 }

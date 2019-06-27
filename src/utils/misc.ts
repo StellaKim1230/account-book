@@ -1,5 +1,5 @@
-export const getAmountByCategoryLabels = (category: string) => {
-  switch (category) {
+export const getNameFromKey = (key: string) => {
+  switch (key) {
     case 'foodExpenses':
       return '식료품비'
     case 'livingExpenses':
@@ -14,7 +14,13 @@ export const getAmountByCategoryLabels = (category: string) => {
       return '대출원금'
     case 'installmentSavings':
       return '할부'
+    case 'saving':
+      return '적금'
+    case 'output':
+      return '지출'
+    case 'income':
+      return '수입'
     default:
-      return category
+      return key
   }
 }

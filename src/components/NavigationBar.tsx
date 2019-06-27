@@ -25,6 +25,10 @@ const NavigationBar: FC<Props> = () => (
         to='/'
         title='가계부'
       />
+      <Button
+        to='/history'
+        title='가계부 내역'
+      />
     </div>
   </div>
 )

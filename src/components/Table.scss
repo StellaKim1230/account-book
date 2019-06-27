@@ -1,0 +1,23 @@
+.Table {
+  width: 100%;
+  border: 1px solid $black;
+}
+
+.Table__thead {
+  font-size: 1.6rem;
+  background-color: rgba($table-color, 0.8);
+
+  @include mobile {
+    font-size: 1rem;
+  }
+}
+
+.Table__tbody {
+  font-size: 1.4rem;
+  font-weight: 500;
+  background-color: rgba($table-color, 0.4);
+
+  @include mobile {
+    font-size: .8rem;
+  }
+}

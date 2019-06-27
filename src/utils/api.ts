@@ -1,7 +1,7 @@
 import { ApiResponse } from '../types'
 
 export const apiHandler = async <T>(url: string, method: string = 'GET', body?: any): Promise<ApiResponse<T>> => {
-  const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken')
+  const token = sessionStorage.getItem('accessToken') || localStorage.getItem('accessToken')
   const bearerToken = `Bearer ${token}`
 
   const contentType = { 'Content-Type': 'application/json; charset=utf-8' }

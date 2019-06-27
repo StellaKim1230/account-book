@@ -1,0 +1,36 @@
+.HistoryPage__table {
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+.HistoryPage__table > tr > th {
+  padding: .5rem;
+  text-align: left;
+  border: 1px solid black;
+
+  @include mobile {
+    padding: .3rem;
+
+    &.HistoryPage__descriptionHeader {
+      display: none;
+    }
+  }
+
+  &.HistoryPage__amountHeader {
+    text-align: right;
+  }
+}
+
+.HistoryPage__table > tr > td {
+  padding: .5rem;
+  text-align: left;
+  border: 1px solid black;
+
+  &.HistoryRow__amount {
+    text-align: right;
+  }
+
+  @include mobile {
+    padding: .5rem;
+  }
+}
