@@ -1,0 +1,35 @@
+.HistoryRow__createdAt {
+  width: 10%;
+
+  @include mobile {
+    width: 15%;
+  }
+}
+
+.HistoryRow__type {
+  width: 10%;
+}
+
+.HistoryRow__category {
+  width: 15%;
+}
+
+.HistoryRow__accountName {
+  width: 10%;
+}
+
+.HistoryRow__title {
+  width: 20%;
+}
+
+.HistoryRow__amount {
+  width: 10%;
+}
+
+.HistoryRow__description {
+  width: 30%;
+
+  @include mobile {
+    display: none;
+  }
+}

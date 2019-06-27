@@ -70,3 +70,8 @@ export interface MainStatsReducer {
   balanceByAccount: BalanceByAccount[]
   isLoading: boolean
 }
+
+export interface TableHeader {
+  headerClassName: string
+  header: string
+}

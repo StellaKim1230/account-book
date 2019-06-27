@@ -9,6 +9,8 @@ const links = [{
   to: '/signin', label: '로그인',
 }, {
   to: '/signup', label: '회원가입',
+}, {
+  to: '/history', label: '가계부 내역',
 }]
 
 interface Props {}

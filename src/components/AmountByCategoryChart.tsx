@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { map, take } from 'lodash'
 
-import { getAmountByCategoryLabels } from '../pages/MainPageUtils'
 import Button from './Button'
 import Select from './Select'
 import Chart from './Chart'
 
 import { apiHandler } from '../utils/api'
+import { getNameFromKey } from '../utils/misc'
 import { AmountByCategory } from '../types/model'
 import { MONTH, START_YEAR, CURRENT_MONTH, CURRENT_YEAR } from '../constants/date'
 
@@ -130,7 +130,7 @@ class AmountByCategoryChart extends Component<Props, State> {
             parseInt(total, 10)
           ))}
           labels={map(amountByCategory, ({ categoryName }) => (
-            getAmountByCategoryLabels(categoryName)
+            getNameFromKey(categoryName)
           ))}
           responsive
           isLegendShowing

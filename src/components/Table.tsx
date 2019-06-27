@@ -1,25 +1,38 @@
 import React, { FC, ReactNode } from 'react'
 
+import cx from 'classnames'
+
+import { TableHeader } from '../types/model'
+
+import './Table.scss'
+
 interface Props {
-  headers: string[]
+  className?: string
+  headers: TableHeader[]
   rows: ReactNode[]
 }
 
 const Table: FC<Props> = ({
+  className,
   headers,
   rows,
 }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          {headers.map((header) => (
-            <th key={header}>{header}</th>
+    <table className={cx('Table', className)}>
+      <thead className={cx('Table__thead', className)}>
+        <tr className='Table__tr'>
+          {headers.map(({ headerClassName, header }) => (
+            <th
+              className={cx('Table__th', headerClassName)}
+              key={headerClassName}
+            >
+              {header}
+            </th>
           ))}
         </tr>
       </thead>
-      <tbody>
-        {rows.map((row) => row)}
+      <tbody className={`Table__tbody ${className}`}>
+        {rows}
       </tbody>
     </table>
   )
