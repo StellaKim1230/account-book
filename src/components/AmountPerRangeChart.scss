@@ -3,7 +3,6 @@
   width: calc(100% - 50% - 1rem);
   border: .05rem solid $border-color;
   border-radius: 3px;
-  background-color: $white;
 
   @include mobile {
     width: 100%;

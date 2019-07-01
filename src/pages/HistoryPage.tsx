@@ -1,9 +1,13 @@
 import React, { FC, useState, useEffect } from 'react'
 
+import queryString from 'query-string'
+
 import Table from '../components/Table'
 import HistoryRow from '../components/HistoryRow'
+import Select from '../components/Select'
 
-import { History } from '../types/model'
+import { History, Category, Account } from '../types/model'
+import { getNameFromKey } from '../utils/misc'
 import { apiHandler } from '../utils/api'
 
 import './HistoryPage.scss'
@@ -26,26 +30,106 @@ const headers = [{
 
 interface Props {}
 
+const initialParamState = {
+  account: '',
+  category: '',
+}
+
 const HistoryPage: FC<Props> = () => {
   const [ history, setHistory ] = useState<History>()
+  const [ accounts, setAccounts ] = useState<Account[]>()
+  const [ categories, setCategories ] = useState<Category[]>()
+  const [ params, setParams ] = useState(initialParamState)
+
+  const fetchCategoryAndAccount = async () => {
+    try {
+      const [ account, category ] = await Promise.all([
+        apiHandler<Account[]>('/accounts'),
+        apiHandler<Category[]>('/categories'),
+      ])
+
+      if (!(account.result && category.result)) {
+        console.error(account.errorCode)
+        console.error(category.errorCode)
+        return
+      }
+
+      setAccounts(account.data)
+      setCategories(category.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   useEffect(() => {
-    apiHandler<History>('/histories')
-      .then(({ result, errorCode, data }) => {
-        if (!result) {
-          console.error(errorCode)
-          return
-        }
-
-        setHistory(data)
-      })
-      .catch((e) => {
-        console.error(e)
-      })
+    fetchCategoryAndAccount()
   }, [])
+
+  const fetchHistory = async () => {
+    try {
+      const url = `/histories?${queryString.stringify(params)}`
+
+      const { result, errorCode, data } = await apiHandler<History>(url)
+
+      if (!result) {
+        console.error(errorCode)
+        return
+      }
+
+      setHistory(data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  useEffect(() => {
+    fetchHistory()
+  }, [params])
+
+  const handleSelect = async ({ target }: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = target
+
+    setParams((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
+  const getOptions = (options: Account[] | Category[], selector: string) => {
+    const defaultOptions = [{
+      value: '',
+      label: '전체',
+    }]
+
+    if (options) {
+      options.forEach((option: Account | Category) => {
+        defaultOptions.push({
+          value: option.id.toString(),
+          label: getNameFromKey(option[selector] as string),
+        })
+      })
+    }
+
+    return defaultOptions
+  }
+
+  const getAccountOptions = getOptions(accounts!, 'accountName')
+  const getCategoryOptions = getOptions(categories!, 'categoryName')
 
   return (
     <div className='HistoryPage'>
+      <Select
+        className='HistoryPage__account'
+        name='account'
+        optionData={getAccountOptions}
+        onChange={handleSelect}
+      />
+      <Select
+        className='HistoryPage__category'
+        name='category'
+        optionData={getCategoryOptions}
+        onChange={handleSelect}
+      />
       {history && (
         <Table
           className='HistoryPage__table'

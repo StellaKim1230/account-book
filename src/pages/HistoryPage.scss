@@ -6,7 +6,7 @@
 .HistoryPage__table > tr > th {
   padding: .5rem;
   text-align: left;
-  border: 1px solid black;
+  border: 1px solid $border-color;
 
   @include mobile {
     padding: .3rem;
@@ -24,7 +24,7 @@
 .HistoryPage__table > tr > td {
   padding: .5rem;
   text-align: left;
-  border: 1px solid black;
+  border-right: 1px solid $border-color;
 
   &.HistoryRow__amount {
     text-align: right;
@@ -33,4 +33,10 @@
   @include mobile {
     padding: .5rem;
   }
+}
+
+.HistoryRow__amount {
+  color: $red;
+  font-size: 1.6rem;
+  font-weight: bold;
 }

@@ -8,8 +8,8 @@ interface Props {
   className?: string
   name: string
   optionData: Array<{
-    value: number
-    label: string
+    value: number | string
+    label: number | string
   }>
   selectedValue?: string
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void

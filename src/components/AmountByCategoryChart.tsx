@@ -68,7 +68,7 @@ class AmountByCategoryChart extends Component<Props, State> {
     }
   }
 
-  handleChange = ({ target }: React.ChangeEvent<HTMLSelectElement>) => {
+  handleSelect = ({ target }: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = target
 
     this.setState({
@@ -108,14 +108,14 @@ class AmountByCategoryChart extends Component<Props, State> {
             name='year'
             optionData={getYears}
             selectedValue={year}
-            onChange={this.handleChange}
+            onChange={this.handleSelect}
           />
           {isShowingMonthSelector && <Select
             className='Select__month'
             name='month'
             optionData={take(MONTH, parseInt(CURRENT_MONTH, 10))}
             selectedValue={month}
-            onChange={this.handleChange}
+            onChange={this.handleSelect}
           />}
           <Button
             title={isShowingMonthSelector ? 'year' : 'year & month'}

@@ -14,8 +14,8 @@ interface Props {
   key: number
   title: string
   amount: number
-  account: Account
-  category?: Category
+  account: Pick<Account, 'accountName'>
+  category: Pick<Category, 'type' | 'categoryName'>
   description?: string
   createdAt: string
 }

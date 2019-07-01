@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react'
+import React, { FC } from 'react'
 
 import cx from 'classnames'
 
@@ -23,7 +23,7 @@ const Checkbox: FC<Props> = ({
   label,
   onChange,
 }) => (
-  <Fragment>
+  <>
     <input
       className={cx('Select', className)}
       type='checkbox'
@@ -33,7 +33,7 @@ const Checkbox: FC<Props> = ({
       onChange={onChange}
     />
     <label htmlFor={htmlFor}>{label}</label>
-  </Fragment>
+  </>
 )
 
 export default Checkbox

@@ -7,29 +7,11 @@ export interface HistoryItem {
   id: number
   title: string
   amount: number
-  account: Account
-  category: Category
+  account: Pick<Account, 'id' | 'accountName' | 'accountNumber' | 'cardNumber'>
+  category: Pick<Category, 'id' | 'categoryName' | 'type'>
   description: string
   createdAt: string
   updatedAt: string
-}
-
-export interface Account {
-  id: number
-  accountName: string
-  accountNumber: string
-  cardNumber: string
-}
-
-export interface Category {
-  id: number
-  type: Type
-  categoryName: string
-}
-
-export interface Type {
-  code: number
-  title: string
 }
 
 export interface SignupResult {
@@ -69,6 +51,38 @@ export interface MainStatsReducer {
   amountPerRange: AmountPerRange
   balanceByAccount: BalanceByAccount[]
   isLoading: boolean
+}
+
+export interface Category {
+  [key: string]: number | string | Partial<Type>
+  id: number
+  type: Pick<Type, 'code' | 'title'>
+  userId: number
+  categoryName: string
+  description: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Type {
+  code: number
+  title: string
+  categories: Pick<Category, 'id' | 'categoryName' | 'createdAt' | 'updatedAt'>
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Account {
+  [key: string]: string | number | undefined
+  id: number
+  userId: number
+  accountName: string
+  accountNumber?: string
+  accountTYpeId?: string
+  balance: string
+  cardNumber?: string
+  createdAt: string
+  updatedAt: string
 }
 
 export interface TableHeader {

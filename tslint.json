@@ -36,6 +36,7 @@
     "arrow-parens": true,
     "object-literal-sort-keys": false,
     "ordered-imports": false,
-    "prefer-template": true
+    "prefer-template": true,
+    "prefer-for-of": false
   }
 }

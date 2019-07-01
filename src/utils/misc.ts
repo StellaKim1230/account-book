@@ -1,5 +1,19 @@
 export const getNameFromKey = (key: string) => {
   switch (key) {
+    case 'salary':
+      return '급여'
+    case 'incomeEtc':
+      return '기타수입'
+    case 'fixedCost':
+      return '고정지출'
+    case 'loanRepayment':
+      return '대출상환'
+    case 'travelSavings':
+      return '여행적금'
+    case 'transfer':
+      return '이체'
+    case 'congratulatoryMoney':
+      return '경조비'
     case 'foodExpenses':
       return '식료품비'
     case 'livingExpenses':
@@ -13,7 +27,7 @@ export const getNameFromKey = (key: string) => {
     case 'principalOfLoan':
       return '대출원금'
     case 'installmentSavings':
-      return '할부'
+      return '적금'
     case 'saving':
       return '적금'
     case 'output':

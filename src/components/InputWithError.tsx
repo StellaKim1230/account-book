@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react'
+import React, { FC } from 'react'
 
 import cx from 'classnames'
 
@@ -28,7 +28,7 @@ const InputWithError: FC<Props> = ({
   errorMessage,
   inputRef,
 }) => (
-  <Fragment>
+  <>
     <Input
       inputRef={inputRef}
       className={cx('InputWithError', className)}
@@ -43,7 +43,7 @@ const InputWithError: FC<Props> = ({
         {errorMessage}
       </p>
     )}
-  </Fragment>
+  </>
 )
 
 export default InputWithError

@@ -23,7 +23,7 @@ export const getMainStats = () => async (dispatch: Dispatch) => {
     const { data, result } = await apiHandler<MainStats>('/stats')
     if (result) return dispatch(getMainStatsSuccess(data))
     dispatch(getMainstatsFailed())
-  } catch (e) {
+  } catch (err) {
     dispatch(getMainstatsFailed())
   }
 }
