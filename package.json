@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "build:dev": "NODE_ENV=dev webpack --config webpack.prod.config.js",
-    "start:dev": "webpack-dev-server --config webpack.dev.config.js",
+    "build:stage": "NODE_ENV=stage webpack --config webpack.prod.config.js",
+    "build:prod": "NODE_ENV=prod webpack --config webpack.prod.config.js",
+    "start:dev": "NODE_ENV=dev webpack-dev-server --config webpack.dev.config.js",
     "test": "NODE_ENV=dev jest --config jest.config.json",
     "test:one": "yarn test"
   },

@@ -73,7 +73,7 @@ module.exports = merge(baseConfig, {
       DEV: true,
     }),
     new Dotenv({
-      path: './development.env'
+      path: '.env'
     })
   ],
 })

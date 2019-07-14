@@ -15,7 +15,7 @@ export const apiHandler = async <T>(url: string, method: string = 'GET', body?: 
   }
 
   try {
-    const res = await fetch(`${process.env.DEV_API}${url}`, config)
+    const res = await fetch(`${process.env.API_URL}${url}`, config)
     return res.json()
 
   } catch (err) {

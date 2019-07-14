@@ -90,7 +90,7 @@ module.exports = merge(baseConfig, {
       algorithm: 'gzip',
     }),
     new Dotenv({
-      path: './development.env'
+      path: '.env'
     })
   ],
   optimization: {
