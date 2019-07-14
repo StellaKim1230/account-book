@@ -10,7 +10,7 @@ pipelines:
           - npm install
           - npm run test
   branches:
-    dev:
+    feature/*:
       - step:
           name: Build
           caches:
@@ -24,12 +24,44 @@ pipelines:
           caches:
             - node
           script:
-              - npm install
-              - npm run build:dev
-              - pipe: atlassian/aws-s3-deploy:0.2.4
-                variables:
-                  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-                  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-                  AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
-                  S3_BUCKET: $S3_BUCKET
-                  LOCAL_PATH: $LOCAL_PATH
+            - npm install
+            - npm run build:dev
+            - pipe: atlassian/aws-s3-deploy:0.2.4
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $DEV_S3_BUCKET
+                LOCAL_PATH: $LOCAL_PATH
+      - step:
+          name: Deploy to staging
+          deployment: staging
+          trigger: manual
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build:stage
+            - pipe: atlassian/aws-s3-deploy:0.2.4
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $STAGE_S3_BUCKET
+                LOCAL_PATH: $LOCAL_PATH
+    master:
+      - step:
+          name: Deploy to production
+          deployment: production
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build:prod
+            - pipe: atlassian/aws-s3-deploy:0.2.4
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $PROD_S3_BUCKET
+                LOCAL_PATH: $LOCAL_PATH
