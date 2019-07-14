@@ -1,0 +1,32 @@
+.SiderbarTemplate {
+  height: auto;
+}
+
+.SiderbarTemplate__sidebar {
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100%;
+  position: fixed;
+  color: white;
+  display: none;
+  overflow: hidden;
+  border-right: 1px solid $border-color;
+
+  @include wide-descktop {
+    display: block;
+  }
+}
+
+.SiderbarTemplate__main {
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  padding: 2rem 1rem;
+  
+  @include wide-descktop {
+    width: calc(100% - 20rem);
+    left: 20rem;
+  }
+}

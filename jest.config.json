@@ -1,0 +1,25 @@
+{
+  "rootDir": "src",
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "<rootDir>/components/*Utils.[t]s?(x)",
+    "<rootDir>/pages/*Utils.[t]s?(x)",
+    "<rootDir>/redux/actions/*.ts",
+    "<rootDir>/redux/reducers/*.ts",
+    "<rootDir>/utils/*.ts",
+    "!**/node_modules/**",
+    "!**/dist/**"
+  ],
+  "coverageDirectory": "<rootDir>/../coverage",
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "testMatch": [
+    "<rootDir>/**/*.spec.[t]s?(x)"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/dist/"
+  ],
+  "verbose": true
+}

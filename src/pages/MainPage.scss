@@ -1,0 +1,93 @@
+.MainPage {
+  width: 100%;
+  height: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.MainPage__currentMonth {
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+  vertical-align: top;
+  margin-bottom: 1rem;
+  padding: 2rem 2.5rem;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.MainPage__currentMonthTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $font-important-color;
+  margin-bottom: 1rem;
+}
+
+.MainPage__currentDate {
+  color: $red;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.MainPage__totalExpenseByCurrentMonth {
+  font-size: 2rem;
+  font-weight: bold;
+  color: $black;
+}
+
+.MainPage__balanceByAccount {
+  border: 1px solid $border-color;
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 2.4rem 2.5rem;
+  border-radius: 3px;
+
+  @include mobile {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.MainPage__balanceByAccountTable {
+  display: inline-block;
+  width: 33.3%;
+
+  @include mobile {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: .1rem solid $border-color;
+  }
+}
+
+.MainPage__balanceByAccountHead {
+  font-size: 1.3rem;
+  color: $font-color;
+  font-weight: 700;
+  text-align: right;
+  padding-bottom: 1rem;
+}
+
+.MainPage__balanceByAccountDate {
+  font-size: 1.3rem;
+  color: $font-color;
+  font-weight: 700;
+  padding-bottom: 1rem;
+  text-align: right;
+}
+
+.MainPage__balanceByAccountValue {
+  font-size: 1.6rem;
+  color: $black;
+  font-weight: bold;
+  text-align: right;
+}
+
+.MainPage__header {
+  margin-bottom: 2rem;
+}

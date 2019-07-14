@@ -1,0 +1,27 @@
+.Button {
+  border: 1px solid $button-border-color;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $font-color;
+  cursor: pointer;
+  outline: none;
+  margin-right: 1rem;
+  padding: .2rem 1rem;
+
+  &:not(&--selected, &:disabled):hover {
+    color: $white;
+    background-color: rgba($background-color, 0.7);
+  }
+
+  &--selected {
+    background-color: $background-color;
+    color: $white;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $button-disabled-color;
+    border-color: $button-disabled-color;
+    color: $white;
+  }
+}

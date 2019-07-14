@@ -7,5 +7,5 @@ module.exports = {
   inline: true,
   hot: true,
   historyApiFallback: true,
-  // open: true,
+  open: false,
 }

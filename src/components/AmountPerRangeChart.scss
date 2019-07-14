@@ -1,0 +1,35 @@
+.AmountPerRangeChart {
+  display: inline-block;
+  width: calc(100% - 50% - 1rem);
+  border: .05rem solid $border-color;
+  border-radius: 3px;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.AmountPerRangeChart__date {
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding-left: 1rem;
+}
+
+.AmountPerRangeChart__filter {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.AmountPerRangeChart__chart {
+  width: 100%;
+  min-height: 30rem;
+  padding: 1rem;
+  position: relative;
+  border-radius: 2px;
+}

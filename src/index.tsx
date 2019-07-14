@@ -1,9 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { configureStore } from './redux/store'
 
-import { Hello } from './components/App'
+import App from './containers/App'
 
-ReactDOM.render(
-  <Hello compiler='Typescript' framework='React'/>,
-  document.getElementById('root')
-);
+import './index.scss'
+
+const rootElement = document.getElementById('root')
+const store = configureStore({
+  // ...initialize any prepared state
+})
+
+if (!rootElement) throw Error ('Dom element div#root not found')
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+)
