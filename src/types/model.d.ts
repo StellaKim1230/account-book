@@ -10,8 +10,8 @@ export interface HistoryItem {
   account: Pick<Account, 'id' | 'accountName' | 'accountNumber' | 'cardNumber'>
   category: Pick<Category, 'id' | 'categoryName' | 'type'>
   description: string
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface SignupResult {
@@ -54,26 +54,26 @@ export interface MainStatsReducer {
 }
 
 export interface Category {
-  [key: string]: number | string | Partial<Type>
+  [key: string]: number | string | Partial<Type> | Date
   id: number
   type: Pick<Type, 'code' | 'title'>
   userId: number
   categoryName: string
   description: string
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface Type {
   code: number
   title: string
   categories: Pick<Category, 'id' | 'categoryName' | 'createdAt' | 'updatedAt'>
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface Account {
-  [key: string]: string | number | undefined
+  [key: string]: string | number | undefined | Date
   id: number
   userId: number
   accountName: string
@@ -81,8 +81,8 @@ export interface Account {
   accountTYpeId?: string
   balance: string
   cardNumber?: string
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface TableHeader {

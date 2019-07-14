@@ -9,6 +9,7 @@ interface Props {
   id?: string
   name: string
   type: string
+  label?: string
   placeholder?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -24,17 +25,23 @@ const Input: FC<Props> = ({
   onChange,
   onBlur,
   inputRef,
+  label,
 }) => (
-  <input
-    ref={inputRef}
-    className={cx('Input', className)}
-    id={id}
-    name={name}
-    type={type}
-    placeholder={placeholder}
-    onChange={onChange}
-    onBlur={onBlur}
-  />
+  <>
+    {label && (
+      <label className='Input__label'>{label}</label>
+    )}
+    <input
+      ref={inputRef}
+      className={cx('Input', className)}
+      id={id}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      onChange={onChange}
+      onBlur={onBlur}
+    />
+  </>
 )
 
 export default Input

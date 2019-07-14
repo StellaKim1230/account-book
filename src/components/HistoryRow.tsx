@@ -17,7 +17,7 @@ interface Props {
   account: Pick<Account, 'accountName'>
   category: Pick<Category, 'type' | 'categoryName'>
   description?: string
-  createdAt: string
+  createdAt: Date
 }
 
 const HistoryRow: FC<Props> = ({

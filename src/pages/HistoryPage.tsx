@@ -5,6 +5,9 @@ import queryString from 'query-string'
 import Table from '../components/Table'
 import HistoryRow from '../components/HistoryRow'
 import Select from '../components/Select'
+import Button from '../components/Button'
+import HistoryAdd from '../components/HistoryAdd'
+import Modal from '../components/Modal'
 
 import { History, Category, Account } from '../types/model'
 import { getNameFromKey } from '../utils/misc'
@@ -40,6 +43,7 @@ const HistoryPage: FC<Props> = () => {
   const [ accounts, setAccounts ] = useState<Account[]>()
   const [ categories, setCategories ] = useState<Category[]>()
   const [ params, setParams ] = useState(initialParamState)
+  const [ isShowingModal, toggleShowingModal ] = useState(false)
 
   const fetchCategoryAndAccount = async () => {
     try {
@@ -118,6 +122,13 @@ const HistoryPage: FC<Props> = () => {
 
   return (
     <div className='HistoryPage'>
+      <Modal
+        header='가계부 추가'
+        isShowing={isShowingModal}
+        hideModal={() => toggleShowingModal(false)}
+      >
+        <HistoryAdd />
+      </Modal>
       <Select
         className='HistoryPage__account'
         name='account'
@@ -135,27 +146,24 @@ const HistoryPage: FC<Props> = () => {
           className='HistoryPage__table'
           headers={headers}
           rows={history.histories.map(
-            ({
-              id,
-              title,
-              amount,
-              account,
-              category,
-              description,
-              createdAt,
-            }) => (
+            (historyItem) => (
               <HistoryRow
-                key={id}
-                title={title}
-                amount={amount}
-                account={account}
-                category={category}
-                createdAt={createdAt}
-                description={description}
+                key={historyItem.id}
+                title={historyItem.title}
+                amount={historyItem.amount}
+                account={historyItem.account}
+                category={historyItem.category}
+                createdAt={historyItem.createdAt}
+                description={historyItem.description}
               />
           ))}
         />
       )}
+      <Button
+        className='HistoryPage__button'
+        title='가계부 내역 추가'
+        onClick={() => toggleShowingModal(!isShowingModal)}
+      />
     </div>
   )
 }
